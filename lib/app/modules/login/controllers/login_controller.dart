@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../blocs/auth/auth.bloc.dart';
 import '../../../data/datamodel.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
-  static const routeName = '/login';
-
+  final routeName = '/login'.obs;
   final count = 0.obs;
   final spinnerVisible = false.obs;
   final messageVisible = false.obs;
@@ -46,9 +46,9 @@ class LoginController extends GetxController {
   fetchData(AuthBloc? authBloc, String? loginType) async {
     var userAuth;
     if (loginType == "Google") {
-      userAuth = await authBloc.signInWithGoogle();
+      userAuth = await authBloc!.signInWithGoogle();
     } else {
-      userAuth = await authBloc.signInWithEmail(model);
+      userAuth = await authBloc!.signInWithEmail(model);
     }
 
     if (userAuth == "") {
